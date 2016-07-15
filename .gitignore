@@ -9,3 +9,6 @@ nbproject/private
 profiles.xml
 target
 tags
+
+.idea/
+target/

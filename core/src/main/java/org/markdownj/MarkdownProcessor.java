@@ -79,13 +79,17 @@ public class MarkdownProcessor {
         TextEditor text = new TextEditor(txt);
 
         // Standardize line endings:
+        // Windows下换行为\r\n，Mac下换行为\r，而Unix的标准是使用\n换行，所以在这里做一个统一的转换。
         text.replaceAll("\\r\\n", "\n"); 	// DOS to Unix
         text.replaceAll("\\r", "\n");    	// Mac to Unix
+        //纯空格或者纯TAB，就删掉
         text.replaceAll("^[ \\t]+$", "");
 
         // Make sure $text ends with a couple of newlines:
+        // 在最末尾加两行换行
         text.append("\n\n");
 
+        //TAB转空格
         text.detabify();
         text.deleteAll("^[ ]+$");
         hashHTMLBlocks(text);
